@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生ポートフォリオ - 小渕 結人</title>
+    <!-- Tailwind CSS CDNの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* カスタム設定: フォントはシンプルで清潔感のあるものを想定 */
+        :root {
+            --color-primary: #1D4ED8; /* Blue-700 */
+            --color-secondary: #D1D5DB; /* Gray-300 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* Light Gray Background */
+            color: #1f2937; /* Dark Gray Text */
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 60%;
+                height: 3px;
+                background-color: var(--color-primary);
+                border-radius: 9999px;
+            }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1D4ED8',
+                        'secondary-bg': '#E5E7EB',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- ヘッダー / ナビゲーション -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-2xl font-bold text-primary rounded-lg hover:opacity-80 transition duration-300">
+                    小渕 結人 PORTFOLIO
+                </a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary transition duration-300">自己紹介</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary transition duration-300">スキル</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary transition duration-300">プロジェクト</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary transition duration-300">連絡先</a>
+                </nav>
+                <button class="md:hidden text-gray-600 hover:text-primary focus:outline-none" aria-label="Menu">
+                    <!-- Menu Icon (SVG) -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="space-y-20 py-16">
+
+        <!-- ヒーロー / 自己紹介セクション -->
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-10 items-center">
+
+                <!-- プロフィール写真 & 基本情報 -->
+                <div class="md:col-span-1 flex flex-col items-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <img src="https://placehold.co/150x150/e0f2f1/1f2937?text=Your+Photo" alt="プロフィール写真" class="w-32 h-32 rounded-full object-cover mb-4 ring-4 ring-primary ring-offset-2">
+                    <h1 class="text-3xl font-extrabold text-gray-900 mb-1">小渕 結人</h1>
+                    <p class="text-lg text-gray-600 mb-4">日本大学 理工学部 1年</p>
+
+                    <div class="w-full text-center mt-2">
+                        <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-primary hover:bg-blue-800 transition duration-300">
+                            連絡を取る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 自己紹介文とガクチカ -->
+                <div class="md:col-span-2 bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="section-title text-2xl font-bold mb-6">自己紹介 & 私が大切にする価値観</h2>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        日本大学理工学部の小渕結人です。私は常に現状を分析し、目標達成のために周囲を巻き込みながら具体的な行動を工夫することを信条としています。特に、問題の本質を見抜き、解決策を導き出すプロセスに情熱を注いでいます。
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-primary mb-3">学生時代に最も力を入れたこと（ガクチカ）：課題解決と連携</h3>
+                    <div class="space-y-4 text-gray-700 bg-secondary-bg p-5 rounded-lg border border-gray-200">
+                        <p>
+                            私が最も注力したのは、学校主催の清掃ボランティア活動です。事前準備も知り合いもいない状況で参加した際、前日の降雨によりゴミが木の根元や縁石の隙間に**「隠されるように」**散乱しているという課題に直面し、単に道を歩くだけでは見落としが多く、効率が著しく低下していました。
+                        </p>
+                        <p class="font-medium text-gray-800 border-l-4 border-primary pl-3">
+                            この状況を打開するため、私は数少ない同性の後輩に声をかけ、「重点箇所を想定した、視線の低い探索ルート」を提案しました。具体的には、後輩とペアになり、道路の端を徹底的に、かつ低い視線で確認し合うという役割分担を確立しました。
+                        </p>
+                        <p>
+                            その結果、見落としを大幅に減らし、他の参加者より高い効率でゴミを回収できました。この経験から、目標達成には、**現状を分析し、周囲を巻き込んだ上で具体的な行動を工夫する**重要性を学び、これは私の仕事への取り組み方にも繋がる核となる価値観となっています。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- スキルセクション -->
+        <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-extrabold mb-10 text-gray-900">スキル & 専門分野</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- スキルカード 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
+                    <div class="text-3xl mb-3 text-primary">💻</div>
+                    <h3 class="font-bold text-xl mb-2">Web制作 (HTML/CSS/JS)</h3>
+                    <p class="text-gray-600 text-sm">モダンなWebサイトの設計・実装が可能です。特にレスポンシブデザインとUI/UXを重視します。</p>
+                </div>
+                <!-- スキルカード 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
+                    <div class="text-3xl mb-3 text-primary">📊</div>
+                    <h3 class="font-bold text-xl mb-2">データ分析・視覚化</h3>
+                    <p class="text-gray-600 text-sm">Python (Pandas, Matplotlib) を用いたデータ前処理、傾向分析、レポート作成の経験があります。</p>
+                </div>
+                <!-- スキルカード 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
+                    <div class="text-3xl mb-3 text-primary">🗣️</div>
+                    <h3 class="font-bold text-xl mb-2">チーム連携・提案力</h3>
+                    <p class="text-gray-600 text-sm">課題分析に基づき、周囲を巻き込みながら具体的な改善策を実行する力があります。</p>
+                </div>
+                <!-- スキルカード 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
+                    <div class="text-3xl mb-3 text-primary">✍️</div>
+                    <h3 class="font-bold text-xl mb-2">文章作成・プレゼン</h3>
+                    <p class="text-gray-600 text-sm">論理的かつ説得力のある企画書やレポート作成、人前での効果的なプレゼンテーションが得意です。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロジェクトセクション (モックアップ) -->
+        <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-extrabold mb-10 text-gray-900">主要プロジェクト</h2>
+            <div class="space-y-8">
+                <!-- プロジェクト 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden md:flex">
+                    <div class="md:w-1/3 bg-secondary-bg flex items-center justify-center p-6">
+                        <img src="https://placehold.co/400x250/dbeafe/1f2937?text=Web+App+Mockup" alt="プロジェクト1イメージ" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <span class="inline-block bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">Web開発</span>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-900">学生向けタスク管理ツール開発</h3>
+                        <p class="text-gray-700 mb-4">
+                            学業とアルバイトの両立を支援するためのタスク管理Webアプリケーションを開発しました。ReactとFirebaseを使用し、リアルタイムでのデータ同期を実現しました。ユーザビリティテストを行い、直感的な操作性を追求しました。
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-500">
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">React</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Tailwind CSS</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">UX設計</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- プロジェクト 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden md:flex flex-row-reverse">
+                    <div class="md:w-1/3 bg-secondary-bg flex items-center justify-center p-6">
+                        <img src="https://placehold.co/400x250/fecaca/1f2937?text=Analysis+Report" alt="プロジェクト2イメージ" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <span class="inline-block bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">データサイエンス</span>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-900">地域経済動向の分析レポート作成</h3>
+                        <p class="text-gray-700 mb-4">
+                            過去10年間の地域データを収集し、Pythonを用いて主成分分析と時系列分析を実施。その結果を基に、地域活性化に向けた施策提言レポートを作成し、大学のコンペティションで優秀賞を獲得しました。
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-500">
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Python (Pandas)</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">統計分析</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">可視化 (Matplotlib)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 連絡先セクション -->
+        <section id="contact" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 bg-white rounded-xl shadow-lg">
+            <h2 class="section-title text-3xl font-extrabold mb-4 text-gray-900 mx-auto">ご連絡はこちらへ</h2>
+            <p class="text-gray-600 mb-8">ご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
+
+            <div class="space-y-4">
+                <p class="text-lg font-medium">メールアドレス: <a href="mailto:y.obuchi@example.com" class="text-primary hover:text-blue-700 transition duration-300 underline">y.obuchi@example.com</a></p>
+                <p class="text-lg font-medium">LinkedIn: <a href="[LinkedIn URL]" target="_blank" class="text-primary hover:text-blue-700 transition duration-300 underline">[LinkedIn プロフィール]</a></p>
+            </div>
+
+            <div class="mt-8">
+                <!-- フォームのモックアップ -->
+                <form onsubmit="event.preventDefault(); alert('メッセージが送信されました（モックアップ）。');" class="space-y-4">
+                    <input type="text" placeholder="お名前" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    <input type="email" placeholder="メールアドレス" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    <textarea placeholder="メッセージ内容" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
+                    <button type="submit" class="w-full px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 transition duration-300">
+                        メッセージを送信
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-6 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2024 小渕 結人. All rights reserved. | Simple Modern Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- スムーズスクロールのためのJavaScript (オプション) -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
