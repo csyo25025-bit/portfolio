@@ -24,7 +24,14 @@
             background-color: var(--color-background-dark);
             color: var(--color-text-light); /* 全体的に明るいテキスト色 */
             line-height: 1.6;
+            /* 以前のプログラマー風背景関連のスタイルを削除・リセット */
+            position: relative; 
+            overflow-x: hidden;
+            z-index: 1; 
         }
+
+        /* 以前のプログラマー風背景パターン (body::before) の定義を削除しました */
+        
         h1, h2, h3, .font-montserrat {
             font-family: 'Montserrat', sans-serif; /* ヘディング用フォント */
             color: var(--color-text-light); /* ヘディングも明るいテキスト色 */
