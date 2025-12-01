@@ -4,45 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学生ポートフォリオ - 小渕 結人</title>
-    <!-- Tailwind CSS CDNの読み込み -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fontsの読み込み: Montserrat (ヘディング用), Lato (本文用) --><link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDNの読み込み --><script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* カスタム設定: フォントはシンプルで清潔感のあるものを想定 */
+        /* カスタム設定: フォントと色 (ダークテーマ向け) */
         :root {
-            --color-primary: #1D4ED8; /* Blue-700 */
-            --color-secondary: #D1D5DB; /* Gray-300 */
+            --color-primary: #34D399; /* Bright Emerald Green for accent (Emerald-400) */
+            --color-primary-dark: #10B981; /* Darker Emerald for hover (Emerald-600) */
+            --color-background-dark: #1A202C; /* Darkest background (近いBlack) */
+            --color-card-bg: #2D3748; /* Slightly lighter dark gray for cards (Gray-800) */
+            --color-text-light: #F7FAFC; /* Light text on dark background (White) */
+            --color-text-muted: #CBD5E0; /* Muted text (Gray-300) */
+            --color-gacuchika-bg: #4A5568; /* Darker Gacuchika background (Gray-700) */
+            --color-border-dark: #4A5568; /* Border color for dark theme */
+            --color-header-bg: #2D3748; /* Header background (Gray-800) */
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* Light Gray Background */
-            color: #1f2937; /* Dark Gray Text */
+            font-family: 'Lato', sans-serif; /* 本文用フォント */
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light); /* 全体的に明るいテキスト色 */
+            line-height: 1.6;
         }
-
+        h1, h2, h3, .font-montserrat {
+            font-family: 'Montserrat', sans-serif; /* ヘディング用フォント */
+            color: var(--color-text-light); /* ヘディングも明るいテキスト色 */
+        }
         .section-title {
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
             display: inline-block;
         }
-
-            .section-title::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 60%;
-                height: 3px;
-                background-color: var(--color-primary);
-                border-radius: 9999px;
-            }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80%;
+            height: 4px;
+            background-color: var(--color-primary); /* アクセントカラー */
+            border-radius: 9999px;
+        }
+        /* カードのホバーエフェクト */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12); /* ダークテーマに合わせたシャドウ */
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 6px 10px -5px rgba(0, 0, 0, 0.15); /* ホバー時のシャドウを強める */
+        }
+        .btn-primary {
+            background-color: var(--color-primary);
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+        .text-gray-600 { /* デフォルトのTailwindのgray-600が暗すぎるため上書き */
+            color: var(--color-text-muted);
+        }
+        .border-gray-100 { /* カードのボーダーを調整 */
+            border-color: var(--color-border-dark);
+        }
+        .ring-offset-background-light { /* プロフィール写真のリングオフセット色を調整 */
+            --tw-ring-offset-color: var(--color-background-dark);
+        }
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#1D4ED8',
-                        'secondary-bg': '#E5E7EB',
+                        'primary': '#34D399', /* Emerald-400 */
+                        'primary-dark': '#10B981', /* Emerald-600 for hover */
+                        'background-dark': '#1A202C', /* Custom dark background */
+                        'card-bg': '#2D3748', /* Custom dark card background */
+                        'text-light': '#F7FAFC', /* Custom light text */
+                        'text-muted': '#CBD5E0', /* Custom muted text */
+                        'gacuchika-bg': '#4A5568', /* Custom Gacuchika background */
+                        'header-bg': '#2D3748', /* Custom header background */
+                        'border-dark': '#4A5568', /* Custom border color */
+                        'red-600': '#EF4444', /* Darkテーマでも見やすい赤 */
+                        'red-100': '#FEE2E2', /* Darkテーマでも見やすい薄い赤 */
                     }
                 }
             }
@@ -51,63 +95,73 @@
 </head>
 <body class="antialiased">
 
-    <!-- ヘッダー / ナビゲーション -->
-    <header class="bg-white shadow-md sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="#" class="text-2xl font-bold text-primary rounded-lg hover:opacity-80 transition duration-300">
+    <!-- ヘッダー / ナビゲーション --><header class="bg-header-bg shadow-lg sticky top-0 z-10"> <!-- ヘッダー背景色をカードと同じ色に --><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-3xl font-montserrat font-bold text-primary tracking-tight rounded-lg hover:opacity-80 transition duration-300">
                     小渕 結人 PORTFOLIO
                 </a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-600 hover:text-primary transition duration-300">自己紹介</a>
-                    <a href="#skills" class="text-gray-600 hover:text-primary transition duration-300">スキル</a>
-                    <a href="#projects" class="text-gray-600 hover:text-primary transition duration-300">プロジェクト</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary transition duration-300">連絡先</a>
+                <nav class="hidden md:flex space-x-10">
+                    <a href="#about" class="text-text-muted font-medium hover:text-primary transition duration-300 relative group">
+                        自己紹介
+                        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="text-text-muted font-medium hover:text-primary transition duration-300 relative group">
+                        スキル
+                        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="text-text-muted font-medium hover:text-primary transition duration-300 relative group">
+                        プロジェクト
+                        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-text-muted font-medium hover:text-primary transition duration-300 relative group">
+                        連絡先
+                        <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </nav>
-                <button class="md:hidden text-gray-600 hover:text-primary focus:outline-none" aria-label="Menu">
-                    <!-- Menu Icon (SVG) -->
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <button class="md:hidden text-text-muted hover:text-primary focus:outline-none" aria-label="Menu">
+                    <!-- Menu Icon (SVG) --><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- メインコンテンツ -->
-    <main class="space-y-20 py-16">
+    <!-- メインコンテンツ --><main class="space-y-24 py-20">
 
-        <!-- ヒーロー / 自己紹介セクション -->
-        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-10 items-center">
-
-                <!-- プロフィール写真 & 基本情報 -->
-                <div class="md:col-span-1 flex flex-col items-center p-6 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <img src="https://placehold.co/150x150/e0f2f1/1f2937?text=Your+Photo" alt="プロフィール写真" class="w-32 h-32 rounded-full object-cover mb-4 ring-4 ring-primary ring-offset-2">
-                    <h1 class="text-3xl font-extrabold text-gray-900 mb-1">小渕 結人</h1>
-                    <p class="text-lg text-gray-600 mb-4">日本大学 理工学部 1年</p>
-
-                    <div class="w-full text-center mt-2">
-                        <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-primary hover:bg-blue-800 transition duration-300">
-                            連絡を取る
+        <!-- ヒーロー / 自己紹介セクション --><section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 items-center">
+                
+                <!-- プロフィール写真 & 基本情報 --><div class="md:col-span-1 flex flex-col items-center p-8 bg-card-bg rounded-xl shadow-xl border border-border-dark card-hover-effect">
+                    <img src="https://placehold.co/180x180/4A5568/34D399?text=Your+Photo" alt="プロフィール写真" class="w-44 h-44 rounded-full object-cover mb-6 ring-4 ring-primary ring-offset-4 ring-offset-background-dark">
+                    
+                    <!-- 名前とふりがなを追加 --><div class="text-center">
+                        <p class="text-sm font-medium text-text-muted mb-1">おぶちゆうと</p>
+                        <h1 class="text-4xl font-montserrat font-extrabold text-text-light mb-2">小渕 結人</h1>
+                    </div>
+                    
+                    <p class="text-xl text-text-muted mb-5">日本大学 理工学部 1年</p>
+                    
+                    <div class="w-full text-center mt-4">
+                        <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-full shadow-lg text-background-dark btn-primary"> <!-- ボタンテキストを背景色に -->連絡を取る
+                            <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- 自己紹介文とガクチカ -->
-                <div class="md:col-span-2 bg-white p-8 rounded-xl shadow-lg">
-                    <h2 class="section-title text-2xl font-bold mb-6">自己紹介 & 私が大切にする価値観</h2>
-                    <p class="text-gray-700 leading-relaxed mb-6">
+                <!-- 自己紹介文とガクチカ --><div class="md:col-span-2 bg-card-bg p-10 rounded-xl shadow-xl">
+                    <h2 class="section-title text-3xl font-montserrat font-bold mb-8 text-text-light">自己紹介 & 私が大切にする価値観</h2>
+                    <p class="text-text-muted leading-relaxed mb-8 text-lg">
                         日本大学理工学部の小渕結人です。私は常に現状を分析し、目標達成のために周囲を巻き込みながら具体的な行動を工夫することを信条としています。特に、問題の本質を見抜き、解決策を導き出すプロセスに情熱を注いでいます。
                     </p>
-
-                    <h3 class="text-xl font-semibold text-primary mb-3">学生時代に最も力を入れたこと（ガクチカ）：課題解決と連携</h3>
-                    <div class="space-y-4 text-gray-700 bg-secondary-bg p-5 rounded-lg border border-gray-200">
-                        <p>
+                    
+                    <h3 class="text-2xl font-montserrat font-semibold text-primary mb-4">学生時代に最も力を入れたこと（ガクチカ）：課題解決と連携</h3>
+                    <div class="space-y-5 text-text-muted bg-gacuchika-bg p-6 rounded-lg border border-border-dark">
+                        <p class="text-base">
                             私が最も注力したのは、学校主催の清掃ボランティア活動です。事前準備も知り合いもいない状況で参加した際、前日の降雨によりゴミが木の根元や縁石の隙間に**「隠されるように」**散乱しているという課題に直面し、単に道を歩くだけでは見落としが多く、効率が著しく低下していました。
                         </p>
-                        <p class="font-medium text-gray-800 border-l-4 border-primary pl-3">
+                        <p class="font-medium text-text-light border-l-4 border-primary pl-4 text-base">
                             この状況を打開するため、私は数少ない同性の後輩に声をかけ、「重点箇所を想定した、視線の低い探索ルート」を提案しました。具体的には、後輩とペアになり、道路の端を徹底的に、かつ低い視線で確認し合うという役割分担を確立しました。
                         </p>
-                        <p>
+                        <p class="text-base">
                             その結果、見落としを大幅に減らし、他の参加者より高い効率でゴミを回収できました。この経験から、目標達成には、**現状を分析し、周囲を巻き込んだ上で具体的な行動を工夫する**重要性を学び、これは私の仕事への取り組み方にも繋がる核となる価値観となっています。
                         </p>
                     </div>
@@ -116,99 +170,89 @@
             </div>
         </section>
 
-        <!-- スキルセクション -->
-        <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="section-title text-3xl font-extrabold mb-10 text-gray-900">スキル & 専門分野</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- スキルカード 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
-                    <div class="text-3xl mb-3 text-primary">💻</div>
-                    <h3 class="font-bold text-xl mb-2">Web制作 (HTML/CSS/JS)</h3>
-                    <p class="text-gray-600 text-sm">モダンなWebサイトの設計・実装が可能です。特にレスポンシブデザインとUI/UXを重視します。</p>
+        <!-- スキルセクション --><section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-montserrat font-extrabold mb-12 text-text-light">スキル & 専門分野</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- スキルカード 1 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
+                    <div class="text-4xl mb-4 text-primary">💻</div>
+                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">Web制作 (HTML/CSS/JS)</h3>
+                    <p class="text-text-muted text-sm">モダンなWebサイトの設計・実装が可能です。特にレスポンシブデザインとUI/UXを重視します。</p>
                 </div>
-                <!-- スキルカード 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
-                    <div class="text-3xl mb-3 text-primary">📊</div>
-                    <h3 class="font-bold text-xl mb-2">データ分析・視覚化</h3>
-                    <p class="text-gray-600 text-sm">Python (Pandas, Matplotlib) を用いたデータ前処理、傾向分析、レポート作成の経験があります。</p>
+                <!-- スキルカード 2 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
+                    <div class="text-4xl mb-4 text-primary">📊</div>
+                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">データ分析・視覚化</h3>
+                    <p class="text-text-muted text-sm">Python (Pandas, Matplotlib) を用いたデータ前処理、傾向分析、レポート作成の経験があります。</p>
                 </div>
-                <!-- スキルカード 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
-                    <div class="text-3xl mb-3 text-primary">🗣️</div>
-                    <h3 class="font-bold text-xl mb-2">チーム連携・提案力</h3>
-                    <p class="text-gray-600 text-sm">課題分析に基づき、周囲を巻き込みながら具体的な改善策を実行する力があります。</p>
+                <!-- スキルカード 3 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
+                    <div class="text-4xl mb-4 text-primary">🗣️</div>
+                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">チーム連携・提案力</h3>
+                    <p class="text-text-muted text-sm">課題分析に基づき、周囲を巻き込みながら具体的な改善策を実行する力があります。</p>
                 </div>
-                <!-- スキルカード 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-primary hover:shadow-lg transition duration-300">
-                    <div class="text-3xl mb-3 text-primary">✍️</div>
-                    <h3 class="font-bold text-xl mb-2">文章作成・プレゼン</h3>
-                    <p class="text-gray-600 text-sm">論理的かつ説得力のある企画書やレポート作成、人前での効果的なプレゼンテーションが得意です。</p>
+                <!-- スキルカード 4 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
+                    <div class="text-4xl mb-4 text-primary">✍️</div>
+                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">文章作成・プレゼン</h3>
+                    <p class="text-text-muted text-sm">論理的かつ説得力のある企画書やレポート作成、人前での効果的なプレゼンテーションが得意です。</p>
                 </div>
             </div>
         </section>
 
-        <!-- プロジェクトセクション (モックアップ) -->
-        <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="section-title text-3xl font-extrabold mb-10 text-gray-900">主要プロジェクト</h2>
-            <div class="space-y-8">
-                <!-- プロジェクト 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden md:flex">
-                    <div class="md:w-1/3 bg-secondary-bg flex items-center justify-center p-6">
-                        <img src="https://placehold.co/400x250/dbeafe/1f2937?text=Web+App+Mockup" alt="プロジェクト1イメージ" class="rounded-lg shadow-xl">
+        <!-- プロジェクトセクション (モックアップ) --><section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-3xl font-montserrat font-extrabold mb-12 text-text-light">主要プロジェクト</h2>
+            <div class="space-y-10">
+                <!-- プロジェクト 1 --><div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex card-hover-effect">
+                    <div class="md:w-1/3 bg-gacuchika-bg flex items-center justify-center p-8">
+                        <img src="https://placehold.co/450x300/4A5568/34D399?text=Web+App+Mockup" alt="プロジェクト1イメージ" class="rounded-lg shadow-xl">
                     </div>
-                    <div class="md:w-2/3 p-8">
-                        <span class="inline-block bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">Web開発</span>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-900">学生向けタスク管理ツール開発</h3>
-                        <p class="text-gray-700 mb-4">
+                    <div class="md:w-2/3 p-10">
+                        <span class="inline-block bg-primary text-background-dark text-sm font-semibold px-4 py-2 rounded-full mb-4">Web開発</span>
+                        <h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">学生向けタスク管理ツール開発</h3>
+                        <p class="text-text-muted mb-5 text-base">
                             学業とアルバイトの両立を支援するためのタスク管理Webアプリケーションを開発しました。ReactとFirebaseを使用し、リアルタイムでのデータ同期を実現しました。ユーザビリティテストを行い、直感的な操作性を追求しました。
                         </p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-500">
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">React</span>
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">Firebase</span>
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">Tailwind CSS</span>
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">UX設計</span>
+                        <div class="flex flex-wrap gap-3 text-sm text-text-muted">
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">React</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Firebase</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Tailwind CSS</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">UX設計</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- プロジェクト 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden md:flex flex-row-reverse">
-                    <div class="md:w-1/3 bg-secondary-bg flex items-center justify-center p-6">
-                        <img src="https://placehold.co/400x250/fecaca/1f2937?text=Analysis+Report" alt="プロジェクト2イメージ" class="rounded-lg shadow-xl">
+                <!-- プロジェクト 2 --><div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex flex-row-reverse card-hover-effect">
+                    <div class="md:w-1/3 bg-gacuchika-bg flex items-center justify-center p-8">
+                        <img src="https://placehold.co/450x300/4A5568/EF4444?text=Analysis+Report" alt="プロジェクト2イメージ" class="rounded-lg shadow-xl">
                     </div>
-                    <div class="md:w-2/3 p-8">
-                        <span class="inline-block bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">データサイエンス</span>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-900">地域経済動向の分析レポート作成</h3>
-                        <p class="text-gray-700 mb-4">
+                    <div class="md:w-2/3 p-10">
+                        <span class="inline-block bg-red-600 text-text-light text-sm font-semibold px-4 py-2 rounded-full mb-4">データサイエンス</span>
+                        <h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">地域経済動向の分析レポート作成</h3>
+                        <p class="text-text-muted mb-5 text-base">
                             過去10年間の地域データを収集し、Pythonを用いて主成分分析と時系列分析を実施。その結果を基に、地域活性化に向けた施策提言レポートを作成し、大学のコンペティションで優秀賞を獲得しました。
                         </p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-500">
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">Python (Pandas)</span>
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">統計分析</span>
-                            <span class="bg-gray-100 px-3 py-1 rounded-full">可視化 (Matplotlib)</span>
+                        <div class="flex flex-wrap gap-3 text-sm text-text-muted">
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Python (Pandas)</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">統計分析</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">可視化 (Matplotlib)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 連絡先セクション -->
-        <section id="contact" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 bg-white rounded-xl shadow-lg">
-            <h2 class="section-title text-3xl font-extrabold mb-4 text-gray-900 mx-auto">ご連絡はこちらへ</h2>
-            <p class="text-gray-600 mb-8">ご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
-
-            <div class="space-y-4">
-                <p class="text-lg font-medium">メールアドレス: <a href="mailto:y.obuchi@example.com" class="text-primary hover:text-blue-700 transition duration-300 underline">y.obuchi@example.com</a></p>
-                <p class="text-lg font-medium">LinkedIn: <a href="[LinkedIn URL]" target="_blank" class="text-primary hover:text-blue-700 transition duration-300 underline">[LinkedIn プロフィール]</a></p>
+        <!-- 連絡先セクション --><section id="contact" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 bg-card-bg rounded-xl shadow-xl">
+            <h2 class="section-title text-3xl font-montserrat font-extrabold mb-6 text-text-light mx-auto">ご連絡はこちらへ</h2>
+            <p class="text-text-muted mb-10 text-lg">ご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
+            
+            <div class="space-y-5">
+                <p class="text-xl font-semibold">メールアドレス: <a href="mailto:y.obuchi@example.com" class="text-primary hover:text-primary-dark transition duration-300 underline">y.obuchi@example.com</a></p>
+                <p class="text-xl font-semibold">LinkedIn: <a href="[LinkedIn URL]" target="_blank" class="text-primary hover:text-primary-dark transition duration-300 underline">[LinkedIn プロフィール]</a></p>
             </div>
 
-            <div class="mt-8">
-                <!-- フォームのモックアップ -->
-                <form onsubmit="event.preventDefault(); alert('メッセージが送信されました（モックアップ）。');" class="space-y-4">
-                    <input type="text" placeholder="お名前" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                    <input type="email" placeholder="メールアドレス" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
-                    <textarea placeholder="メッセージ内容" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
-                    <button type="submit" class="w-full px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 transition duration-300">
+            <div class="mt-10">
+                <!-- フォームのモックアップ --><form onsubmit="event.preventDefault(); alert('メッセージが送信されました（モックアップ）。');" class="space-y-5">
+                    <input type="text" placeholder="お名前" required class="w-full px-5 py-3 border border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-background-dark text-text-light placeholder-text-muted">
+                    <input type="email" placeholder="メールアドレス" required class="w-full px-5 py-3 border border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-background-dark text-text-light placeholder-text-muted">
+                    <textarea placeholder="メッセージ内容" rows="5" required class="w-full px-5 py-3 border border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-background-dark text-text-light placeholder-text-muted"></textarea>
+                    <button type="submit" class="w-full px-8 py-4 btn-primary text-background-dark font-semibold rounded-lg shadow-md text-lg">
                         メッセージを送信
                     </button>
                 </form>
@@ -217,15 +261,12 @@
 
     </main>
 
-    <!-- フッター -->
-    <footer class="bg-gray-800 text-white py-6 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-sm">&copy; 2024 小渕 結人. All rights reserved. | Simple Modern Portfolio</p>
+    <!-- フッター --><footer class="bg-header-bg text-text-muted py-8 mt-20"> <!-- フッターもヘッダーと同じ背景色に --><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2024 小渕 結人. All rights reserved. | Dark Mode Portfolio</p>
         </div>
     </footer>
 
-    <!-- スムーズスクロールのためのJavaScript (オプション) -->
-    <script>
+    <!-- スムーズスクロールのためのJavaScript (オプション) --><script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
