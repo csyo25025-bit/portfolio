@@ -5,36 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学生ポートフォリオ - 小渕 結人</title>
     <!-- Google Fontsの読み込み: Montserrat (ヘディング用), Lato (本文用) --><link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDNの読み込み --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind CSS CDNの読み込み (最初に配置する必要があります) --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind 設定スクリプト -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#34D399', /* Emerald-400 */
+                        'primary-dark': '#10B981', /* Emerald-600 for hover */
+                        'background-dark': '#1A202C', /* Custom dark background */
+                        'card-bg': '#2D3748', /* Custom dark card background */
+                        'text-light': '#F7FAFC', /* Custom light text */
+                        'text-muted': '#E2E8F0', /* Muted textをGray-200相当に明るく調整 */
+                        'gacuchika-bg': '#4A5568', /* Custom Gacuchika background */
+                        'header-bg': '#2D3748', /* Custom header background */
+                        'border-dark': '#4A5568', /* Custom border color */
+                        'red-600': '#EF4444', /* Darkテーマでも見やすい赤 */
+                        'red-100': '#FEE2E2', /* Darkテーマでも見やすい薄い赤 */
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         /* カスタム設定: フォントと色 (ダークテーマ向け) */
         :root {
-            --color-primary: #34D399; /* Bright Emerald Green for accent (Emerald-400) */
-            --color-primary-dark: #10B981; /* Darker Emerald for hover (Emerald-600) */
-            --color-background-dark: #1A202C; /* Darkest background (近いBlack) */
-            --color-card-bg: #2D3748; /* Slightly lighter dark gray for cards (Gray-800) */
-            --color-text-light: #F7FAFC; /* Light text on dark background (White) */
-            --color-text-muted: #E2E8F0; /* Muted textをGray-200相当に明るく調整 */
-            --color-gacuchika-bg: #4A5568; /* Darker Gacuchika background (Gray-700) */
-            --color-border-dark: #4A5568; /* Border color for dark theme */
-            --color-header-bg: #2D3748; /* Header background (Gray-800) */
+            --color-primary: #34D399; 
+            --color-primary-dark: #10B981; 
+            --color-background-dark: #1A202C; 
+            --color-card-bg: #2D3748; 
+            --color-text-light: #F7FAFC; 
+            --color-text-muted: #E2E8F0; 
+            --color-gacuchika-bg: #4A5568; 
+            --color-border-dark: #4A5568; 
+            --color-header-bg: #2D3748; 
         }
         body {
-            font-family: 'Lato', sans-serif; /* 本文用フォント */
+            font-family: 'Lato', sans-serif; 
             background-color: var(--color-background-dark);
-            color: var(--color-text-light); /* 全体的に明るいテキスト色 */
+            color: var(--color-text-light); 
             line-height: 1.6;
-            /* 以前のプログラマー風背景関連のスタイルを削除・リセット */
             position: relative; 
             overflow-x: hidden;
             z-index: 1; 
         }
-
-        /* 以前のプログラマー風背景パターン (body::before) の定義を削除しました */
         
         h1, h2, h3, .font-montserrat {
-            font-family: 'Montserrat', sans-serif; /* ヘディング用フォント */
-            color: var(--color-text-light); /* ヘディングも明るいテキスト色 */
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--color-text-light); 
         }
         .section-title {
             position: relative;
@@ -48,17 +70,17 @@
             bottom: 0;
             width: 80%;
             height: 4px;
-            background-color: var(--color-primary); /* アクセントカラー */
+            background-color: var(--color-primary); 
             border-radius: 9999px;
         }
         /* カードのホバーエフェクト */
         .card-hover-effect {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12); /* ダークテーマに合わせたシャドウ */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12); 
         }
         .card-hover-effect:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 6px 10px -5px rgba(0, 0, 0, 0.15); /* ホバー時のシャドウを強める */
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 6px 10px -5px rgba(0, 0, 0, 0.15); 
         }
         .btn-primary {
             background-color: var(--color-primary);
@@ -68,37 +90,16 @@
             background-color: var(--color-primary-dark);
             transform: translateY(-2px);
         }
-        .text-gray-600 { /* デフォルトのTailwindのgray-600が暗すぎるため上書き */
+        .text-gray-600 { 
             color: var(--color-text-muted);
         }
-        .border-gray-100 { /* カードのボーダーを調整 */
+        .border-gray-100 { 
             border-color: var(--color-border-dark);
         }
-        .ring-offset-background-light { /* プロフィール写真のリングオフセット色を調整 */
+        .ring-offset-background-light { 
             --tw-ring-offset-color: var(--color-background-dark);
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#34D399', /* Emerald-400 */
-                        'primary-dark': '#10B981', /* Emerald-600 for hover */
-                        'background-dark': '#1A202C', /* Custom dark background */
-                        'card-bg': '#2D3748', /* Custom dark card background */
-                        'text-light': '#F7FAFC', /* Custom light text */
-                        'text-muted': '#E2E8F0', /* Custom muted textをGray-200相当に明るく調整 */
-                        'gacuchika-bg': '#4A5568', /* Custom Gacuchika background */
-                        'header-bg': '#2D3748', /* Custom header background */
-                        'border-dark': '#4A5568', /* Custom border color */
-                        'red-600': '#EF4444', /* Darkテーマでも見やすい赤 */
-                        'red-100': '#FEE2E2', /* Darkテーマでも見やすい薄い赤 */
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 <body class="antialiased">
 
@@ -166,7 +167,7 @@
                             私が最も注力したのは、学校主催の清掃ボランティア活動です。事前準備も知り合いもいない状況で参加した際、前日の降雨によりゴミが木の根元や縁石の隙間に**「隠されるように」**散乱しているという課題に直面し、単に道を歩くだけでは見落としが多く、効率が著しく低下していました。
                         </p>
                         <p class="font-medium text-text-light border-l-4 border-primary pl-4 text-base">
-                            この状況を打開するため、私は数少ない同性の後輩に声をかけ、「重点箇所を想定した、視線の低い探索ルート」を提案しました。具体的には、後輩とペアになり、道路の端を徹底的に、かつ低い視線で確認し合うという役割分担を確立しました。
+                            この状況を打破するため、私は数少ない同性の後輩に声をかけ、「重点箇所を想定した、視線の低い探索ルート」を提案しました。具体的には、後輩とペアになり、道路の端を徹底的に、かつ低い視線で確認し合うという役割分担を確立しました。
                         </p>
                         <p class="text-base">
                             その結果、見落としを大幅に減らし、他の参加者より高い効率でゴミを回収できました。この経験から、目標達成には、**現状を分析し、周囲を巻き込んだ上で具体的な行動を工夫する**重要性を学び、これは私の仕事への取り組み方にも繋がる核となる価値観となっています。
@@ -183,12 +184,12 @@
                 <!-- スキルカード 1 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
                     <div class="text-4xl mb-4 text-primary">💻</div>
                     <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">Web制作 (HTML/CSS/JS)</h3>
-                    <p class="text-text-muted text-sm">モダンなWebサイトの設計・実装が可能です。特にレスポンシブデザインとUI/UXを重視します。</p>
+                    <p class="text-text-muted text-sm">モダンなWebサイトの設計・実装が可能です。特にレスポンシブデザインとUI/UXを重視します。（C言語学習のため、現在はWeb系からフォーカスを移行中）</p>
                 </div>
                 <!-- スキルカード 2 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
-                    <div class="text-4xl mb-4 text-primary">📊</div>
-                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">データ分析・視覚化</h3>
-                    <p class="text-text-muted text-sm">Python (Pandas, Matplotlib) を用いたデータ前処理、傾向分析、レポート作成の経験があります。</p>
+                    <div class="text-4xl mb-4 text-primary">🧠</div>
+                    <h3 class="font-montserrat font-bold text-xl mb-2 text-text-light">C言語 / 基本処理</h3>
+                    <p class="text-text-muted text-sm">C言語の制御構造、基本的なI/O処理、ポインタの基礎などを習得中。自作ゲーム開発を通じて実用的なスキルを磨いています。</p>
                 </div>
                 <!-- スキルカード 3 --><div class="bg-card-bg p-7 rounded-xl shadow-lg border-t-4 border-primary card-hover-effect">
                     <div class="text-4xl mb-4 text-primary">🗣️</div>
@@ -206,42 +207,58 @@
         <!-- プロジェクトセクション (モックアップ) --><section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="section-title text-3xl font-montserrat font-extrabold mb-12 text-text-light">主要プロジェクト</h2>
             <div class="space-y-10">
-                <!-- プロジェクト 1 --><div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex card-hover-effect">
+                
+                <!-- プロジェクト 1 (C言語 数当てゲーム) -->
+                <div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex card-hover-effect">
                     <div class="md:w-1/3 bg-gacuchika-bg flex items-center justify-center p-8">
-                        <img src="https://placehold.co/450x300/4A5568/34D399?text=Web+App+Mockup" alt="プロジェクト1イメージ" class="rounded-lg shadow-xl">
+                        <img src="https://placehold.co/450x300/000000/F7FAFC?text=C+Programming%3A+Number+Guessing+Game+%28Console%29" alt="C言語数当てクイズのコンソール画面" class="rounded-lg shadow-xl">
                     </div>
                     <div class="md:w-2/3 p-10">
-                        <span class="inline-block bg-primary text-background-dark text-sm font-semibold px-4 py-2 rounded-full mb-4">Web開発</span>
-                        <h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">学生向けタスク管理ツール開発</h3>
+                        <span class="inline-block bg-red-600 text-text-light text-sm font-semibold px-4 py-2 rounded-full mb-4">C言語 / 基本ロジック設計</span>
+                        <h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">C言語で開発した数当てクイズ (1〜9999)</h3>
                         <p class="text-text-muted mb-5 text-base">
-                            学業とアルバイトの両立を支援するためのタスク管理Webアプリケーションを開発しました。ReactとFirebaseを使用し、リアルタイムでのデータ同期を実現しました。ユーザビリティテストを行い、直感的な操作性を追求しました。
-                        </p>
-                        <div class="flex flex-wrap gap-3 text-sm text-text-muted">
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">React</span>
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Firebase</span>
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Tailwind CSS</span>
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">UX設計</span>
-                        </div>
-                    </div>
-                </div>
+                            C言語の基本的なプログラミング技術を習得するために作成した、コンソール上で動作する数当てゲームです。**1から9999**までのランダムな数字を当てるシンプルなゲームを通じて、C言語の主要な要素を学びました。
+                            
+                            **【学んだC言語の基礎】**
 
-                <!-- プロジェクト 2 --><div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex flex-row-reverse card-hover-effect">
-                    <div class="md:w-1/3 bg-gacuchika-bg flex items-center justify-center p-8">
-                        <img src="https://placehold.co/450x300/4A5568/EF4444?text=Analysis+Report" alt="プロジェクト2イメージ" class="rounded-lg shadow-xl">
-                    </div>
-                    <div class="md:w-2/3 p-10">
-                        <span class="inline-block bg-red-600 text-text-light text-sm font-semibold px-4 py-2 rounded-full mb-4">データサイエンス</span>
-                        <h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">地域経済動向の分析レポート作成</h3>
-                        <p class="text-text-muted mb-5 text-base">
-                            過去10年間の地域データを収集し、Pythonを用いて主成分分析と時系列分析を実施。その結果を基に、地域活性化に向けた施策提言レポートを作成し、大学のコンペティションで優秀賞を獲得しました。
+                            <ul class="list-disc list-inside space-y-2 mt-4 ml-4 text-text-light">
+                                <li>**ランダムな数の生成**: 毎回異なる数字を出すための仕組み（乱数生成）を組み込みました。</li>
+                                <li>**繰り返しの処理**: ユーザーが正解するまで入力を何度も受け付け、ヒントを出し続けるための**繰り返し処理（ループ）**を実装しました。</li>
+                                <li>**条件による判断**: 入力された数字が正解よりも「大きいか」「小さいか」を判断し、適切なヒント（`if-else`の条件分岐）を表示するロジックを正確に構築しました。</li>
+                                <li>**試行回数のカウント**: プレイヤーが何回で正解したかを記録する機能を持たせました。</li>
+                            </ul>
+                            この制作を通して、C言語でプログラムの流れ（制御フロー）を組み立てる基礎力を身につけることができました。
                         </p>
                         <div class="flex flex-wrap gap-3 text-sm text-text-muted">
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">Python (Pandas)</span>
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">統計分析</span>
-                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">可視化 (Matplotlib)</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">C言語</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">乱数生成</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">ループ処理</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">条件分岐</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">入出力 (scanf/printf)</span>
                         </div>
                     </div>
                 </div>
+                
+                <!-- プロジェクト 2 (C言語 質問ツリーの実装 応用) - Coming Soonを復元 -->
+                <div class="bg-card-bg rounded-xl shadow-xl overflow-hidden md:flex flex-row-reverse card-hover-effect">
+                    <div class="md:w-1/3 bg-gacuchika-bg flex items-center justify-center p-8">
+                        <!-- Coming Soon画像 --><img src="https://placehold.co/450x300/4A5568/34D399?text=Coming+Soon" alt="C言語質問ツリーイメージ" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="md:w-2/3 p-10">
+                        <span class="inline-block bg-primary text-background-dark text-sm font-semibold px-4 py-2 rounded-full mb-4">C言語 / データ構造応用（開発中）</span>
+                        <!-- タイトルに(Coming Soon)を追加 --><h3 class="font-montserrat text-2xl font-bold mb-3 text-text-light">C言語による質問・回答ツリーの動的実装 (Coming Soon)</h3>
+                        <p class="text-text-muted mb-5 text-base">
+                            数当てゲームの次に、質問と回答を効率的に管理するための**質問ツリー構造**をC言語で実装中です。このプロジェクトでは、**構造体、ポインタ、動的メモリ割り当て (`malloc`)** といったC言語の応用技術を活用し、柔軟なデータ構造の構築に挑戦しています。完成次第、詳細とコードを公開予定です。
+                        </p>
+                        <div class="flex flex-wrap gap-3 text-sm text-text-muted">
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">C言語</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">構造体 / ポインタ</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">動的メモリ割り当て (malloc)</span>
+                            <span class="bg-gacuchika-bg px-4 py-1.5 rounded-full font-medium border border-border-dark">ツリー構造</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </section>
 
